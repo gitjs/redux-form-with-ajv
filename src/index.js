@@ -1,6 +1,7 @@
 import Ajv from 'ajv';
 import AjvErrors from 'ajv-errors';
 import objectPath from 'object-path';
+const hashObject = require('hash-object')
 
 const ajv = AjvErrors(new Ajv({
   allErrors: true,
@@ -11,9 +12,15 @@ const ajv = AjvErrors(new Ajv({
 }), {keepErrors: false});
 
 export default (schema, values) => {
-  const errors = {};
+
+  console.log(hashObject(schema));
+
+  let errors = {};
+  console.log(0.1, schema);
   const validate = ajv.compile(schema);
+  console.log(0.2);
   const valid = validate(values);
+  console.log(0.3);
 
   console.log('ajv', validate.errors);
 
@@ -22,6 +29,7 @@ export default (schema, values) => {
       let path = error.dataPath;
       let message = error.message;
 
+      console.log(1);
       // replace "/" with dot (.) so object-path can set path correctly
       path = path.replace(/\//g, '.').substring(1);
 
@@ -29,27 +37,49 @@ export default (schema, values) => {
         path += '.' + error.params.missingProperty;
       }
 
+      console.log(2);
       if (error.parentSchema && error.parentSchema.type === 'array') {
         path += '._error';
       }
 
+      console.log(3);
       return [ path, message ];
     }));
 
     const sortedErrorMap = new Map([ ...errorMap.entries() ]
-      .sort((a, b) => a[0].length - b[0].length))
-      .forEach((message, path) => {
-        /*!path
-         ? Object.assign(errors, message)
-         : objectPath.set(errors, path, message);*/
-      });
+      .sort((a, b) => a[0].length - b[0].length));
 
-    console.log('sorted map', sortedErrorMap);
+    sortedErrorMap.forEach((message, path) => {
+      // TODO this manipulates the schema by reference but why?!?!?!?!
+      // check -> inherit props or immutable 
+      /*!path
+        ? errors = Object.assign(errors, message)
+        : objectPath.set(errors, path, message);*/
 
-    // TODO test, add manual everything with objectPath maybe something wrong there ...
+      if (path)
+        objectPath.set(errors, path, message);
+
+      console.log('add ', !path ? 'assign' : 'path');
+      console.log('current errors', errors);
+    });
   }
+/*
+  Object.assign(errors, {
+    clubName: 'Required'
+  });
 
+  objectPath.set(errors, 'members.0', {
+    firstName: 'first name',
+    lastName: 'last name'
+  });
+
+  objectPath.set(errors, 'members.0.hobbies.0', 'test');
+  objectPath.set(errors, 'members.0.hobbies.1', 'test');
+  objectPath.set(errors, 'members.0.hobbies.2', 'test');
+  objectPath.set(errors, 'members.0.hobbies.3', 'test');
+  objectPath.set(errors, 'members.0.hobbies._error', 'test');
+*/
   console.log('errors', errors);
 
-  return errors;
+  return {};
 }

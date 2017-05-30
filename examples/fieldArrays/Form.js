@@ -14,6 +14,7 @@ const schema = {
         "lastName": {"type": "string"},
         "hobbies": {
           "type": "array",
+          "default": [],  
           "items": {
             "$ref": "#/definitions/hobby"
           },
