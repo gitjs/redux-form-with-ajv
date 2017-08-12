@@ -18,8 +18,8 @@ export default reduxForm({
 
 ## Run examples
 
-Simple validation
+### Simple validation
 ```npm run examples:simple```
 
-Dynamic validation with FieldArrays and customized error messages
+### Dynamic validation with FieldArrays and customized error messages
 ```npm run examples:fieldArrays```
