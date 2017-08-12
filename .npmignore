@@ -1,5 +1,6 @@
-example
+examples
 .babelrc
 .eslintrc
+.gitignore
+.eslintignore
 webpack.*
-src

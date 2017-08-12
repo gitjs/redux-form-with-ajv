@@ -1,20 +1,19 @@
 {
   "name": "redux-form-joi-validation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "validate your redux forms with with joi schema",
   "scripts": {
     "test": "mocha index.spec.js --compilers js:babel-core/register",
-    "simple-validation": "node webpack.server.dev.js ./examples/simpleValidation/webpack.config.js",
-    "field-arrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js",
-    "translated-validation": "node webpack.server.dev.js ./examples/translatedValidation/webpack.config.js",
+    "simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
+    "fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js",
     "analyze": "webpack --json --config webpack.config.dist.js | webpack-bundle-size-analyzer && rm -rf dist"
   },
+  "main": "./src/index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "ISC",
   "dependencies": {
-    "ajv": "^5.1.3",
-    "ajv-errors": "^0.4.0",
-    "lodash.merge": "^4.6.0",
+    "ajv": "^5.2.2",
+    "ajv-errors": "^1.0.0",
     "object-path": "^0.11.4"
   },
   "devDependencies": {

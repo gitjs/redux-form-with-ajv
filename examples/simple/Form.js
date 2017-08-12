@@ -18,7 +18,7 @@ const schema = {
       "minimum": 18
     }
   },
-  "required": [ 'username', 'email', 'age' ]
+  "required": [ 'email', 'username', 'age' ]
 };
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -31,7 +31,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   </div>
 );
 
-const SyncValidationForm = (props) => {
+const SimpleForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -47,6 +47,6 @@ const SyncValidationForm = (props) => {
 };
 
 export default reduxForm({
-  form: 'syncValidation',
-  validate: (values) => validate(schema, values)
-})(SyncValidationForm)
+  form: 'simple',
+  validate: validate(schema)
+})(SimpleForm)

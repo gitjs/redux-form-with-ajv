@@ -1,85 +1,38 @@
 import Ajv from 'ajv';
 import AjvErrors from 'ajv-errors';
 import objectPath from 'object-path';
-const hashObject = require('hash-object')
 
-const ajv = AjvErrors(new Ajv({
+const ajv = new AjvErrors(new Ajv({
   allErrors: true,
-  extendRefs: true,
-  verbose: true,
-  useDefaults: true,
-  jsonPointers: true
+  verbose: true,              // to have information about the error.parentSchema
+  useDefaults: true,          // e.g.to may have default empty array
+  jsonPointers: true          // e.g. /members/0
 }), {keepErrors: false});
 
 export default (schema, values) => {
+  return (values) => {
+    let errors = {};
+    const validate = ajv.compile(schema);
+    const valid = validate(values);
 
-  console.log(hashObject(schema));
+    if (!valid) {
+      validate.errors.forEach((_error) => {
+        const error = _error.params.errors ? _error.params.errors[0] : _error;
 
-  let errors = {};
-  console.log(0.1, schema);
-  const validate = ajv.compile(schema);
-  console.log(0.2);
-  const valid = validate(values);
-  console.log(0.3);
+        let rootPath = error.dataPath;
+        let property = error.params.missingProperty ? '/' + error.params.missingProperty : '';
+        let fullPath = (rootPath + property).replace(/\//g, '.').substring(1);
 
-  console.log('ajv', validate.errors);
+        if (error.parentSchema && error.parentSchema.type === 'array') {
+          fullPath += '._error';
+        }
 
-  if (!valid) {
-    const errorMap = new Map(validate.errors.map((error) => {
-      let path = error.dataPath;
-      let message = error.message;
+        let message = _error.message;
 
-      console.log(1);
-      // replace "/" with dot (.) so object-path can set path correctly
-      path = path.replace(/\//g, '.').substring(1);
+        objectPath.set(errors, fullPath, message);
+      });
+    }
 
-      if (error.params.missingProperty) {
-        path += '.' + error.params.missingProperty;
-      }
-
-      console.log(2);
-      if (error.parentSchema && error.parentSchema.type === 'array') {
-        path += '._error';
-      }
-
-      console.log(3);
-      return [ path, message ];
-    }));
-
-    const sortedErrorMap = new Map([ ...errorMap.entries() ]
-      .sort((a, b) => a[0].length - b[0].length));
-
-    sortedErrorMap.forEach((message, path) => {
-      // TODO this manipulates the schema by reference but why?!?!?!?!
-      // check -> inherit props or immutable 
-      /*!path
-        ? errors = Object.assign(errors, message)
-        : objectPath.set(errors, path, message);*/
-
-      if (path)
-        objectPath.set(errors, path, message);
-
-      console.log('add ', !path ? 'assign' : 'path');
-      console.log('current errors', errors);
-    });
+    return errors;
   }
-/*
-  Object.assign(errors, {
-    clubName: 'Required'
-  });
-
-  objectPath.set(errors, 'members.0', {
-    firstName: 'first name',
-    lastName: 'last name'
-  });
-
-  objectPath.set(errors, 'members.0.hobbies.0', 'test');
-  objectPath.set(errors, 'members.0.hobbies.1', 'test');
-  objectPath.set(errors, 'members.0.hobbies.2', 'test');
-  objectPath.set(errors, 'members.0.hobbies.3', 'test');
-  objectPath.set(errors, 'members.0.hobbies._error', 'test');
-*/
-  console.log('errors', errors);
-
-  return {};
 }
