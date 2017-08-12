@@ -4,8 +4,8 @@
   "description": "validate your redux forms with with joi schema",
   "scripts": {
     "test": "mocha index.spec.js --compilers js:babel-core/register",
-    "simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
-    "fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js",
+    "examples:simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
+    "examples:fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js",
     "analyze": "webpack --json --config webpack.config.dist.js | webpack-bundle-size-analyzer && rm -rf dist"
   },
   "main": "./src/index.js",
