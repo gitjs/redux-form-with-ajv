@@ -1,6 +1,6 @@
 # redux-form-with-ajv
 
-This package transforms the generated [ajv](https://github.com/epoberezkin/ajv) errors to the redux form error style, so you use json-schemas easily. It also supports custom errors messages done by the [ajv-errors](https://github.com/epoberezkin/ajv-errors) package.
+This package transforms the generated [ajv](https://github.com/epoberezkin/ajv) errors to the redux-form error style, so you use json-schema easily. It also supports custom errors messages done by the [ajv-errors](https://github.com/epoberezkin/ajv-errors) package.
 
 ## Installation
 ```npm install --save redux-form-with-ajv```
