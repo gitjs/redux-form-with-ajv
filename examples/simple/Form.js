@@ -14,7 +14,7 @@ const schema = {
       "format": "email"
     },
     "age": {
-      "type": "number",
+      "type": "integer",
       "minimum": 18
     }
   },

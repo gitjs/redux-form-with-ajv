@@ -6,7 +6,7 @@ const ajv = new AjvErrors(new Ajv({
   allErrors: true,
   verbose: true,              // to have information about the error.parentSchema
   useDefaults: true,          // e.g.to may have default empty array
-  jsonPointers: true          // e.g. /members/0
+  jsonPointers: true          // -> /members/0
 }), {keepErrors: false});
 
 export default (schema, values) => {
@@ -32,7 +32,6 @@ export default (schema, values) => {
         objectPath.set(errors, fullPath, message);
       });
     }
-
     return errors;
   }
 }
