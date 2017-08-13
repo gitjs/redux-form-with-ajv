@@ -1,4 +1,4 @@
-import validate from './';
+import validate from './index';
 import chai from 'chai';
 
 const expect = chai.expect;

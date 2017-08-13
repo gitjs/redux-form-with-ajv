@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "validate your redux forms with with ajv (json-schema)",
   "scripts": {
-    "build": "babel src --out-dir dist",
+    "build": "babel src --out-dir dist --ignore **/*.spec.js",
     "lint": "eslint src",
     "test": "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
