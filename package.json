@@ -10,7 +10,7 @@
     "examples:simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
     "examples:fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "MIT",
   "files": [
@@ -51,7 +51,6 @@
     "html-loader": "^0.4.4",
     "html-webpack-include-assets-plugin": "0.0.4",
     "html-webpack-plugin": "^2.28.0",
-    "joi-browser": "^10.0.6",
     "json-loader": "0.5.4",
     "markdown-loader": "0.1.7",
     "mocha": "^3.2.0",
