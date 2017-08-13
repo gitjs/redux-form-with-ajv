@@ -17,6 +17,10 @@
     "README.md",
     "index.js"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/gitjs/redux-form-with-ajv"
+  },
   "keywords": [
     "validation",
     "redux-form",
