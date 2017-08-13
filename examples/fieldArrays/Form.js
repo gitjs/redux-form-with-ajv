@@ -43,13 +43,13 @@ const schema = {
       },
       "minItems": 1,
       "errorMessage": {
-        "minItems": "At least one member must be entered"
+        "minItems": "At least one member must be entered (custom error message)"
       }
     }
   },
   "errorMessage": {
     "required": {
-      "clubName": "Required"
+      "clubName": "Required (custom error message)"
     }
   },
   "required": [ "clubName" ]

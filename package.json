@@ -3,7 +3,8 @@
   "version": "0.0.2",
   "description": "validate your redux forms with with joi schema",
   "scripts": {
-    "test": "mocha index.spec.js --compilers js:babel-core/register",
+    "test": "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "examples:simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
     "examples:fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js",
     "analyze": "webpack --json --config webpack.config.dist.js | webpack-bundle-size-analyzer && rm -rf dist"
@@ -26,6 +27,7 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "chai": "^3.5.0",
+    "coveralls": "^2.13.1",
     "cross-env": "^3.1.3",
     "eslint": "^3.11.1",
     "eslint-config-rackt": "1.1.1",
@@ -43,6 +45,7 @@
     "json-loader": "0.5.4",
     "markdown-loader": "0.1.7",
     "mocha": "^3.2.0",
+    "nyc": "^11.1.0",
     "raw-loader": "0.5.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",

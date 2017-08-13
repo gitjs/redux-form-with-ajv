@@ -1,6 +1,10 @@
-examples
 .babelrc
 .eslintrc
 .gitignore
 .eslintignore
-webpack.*
+webpack.server.dev.js
+.idea
+node_modules
+coverage
+.nyc_output
+npm-debug.log
