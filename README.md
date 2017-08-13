@@ -1,5 +1,5 @@
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.com/gitjs/redux-form-with-ajv)
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/redux-form-with-ajv)
+[![Travis](https://img.shields.io/travis/gitjs/redux-form-with-ajv.svg?style=flat)](https://travis-ci.com/gitjs/redux-form-with-ajv)
+[![npm](https://img.shields.io/npm/v/redux-form-with-ajv.svg?style=flat)](https://www.npmjs.com/package/redux-form-with-ajv)
 
 # redux-form-with-ajv
 
