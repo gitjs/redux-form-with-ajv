@@ -1,20 +1,19 @@
 {
-  "name": "redux-form-joi-validation",
+  "name": "redux-form-with-ajv",
   "version": "0.0.1",
-  "description": "validate your redux forms with with joi schema",
+  "description": "validate your redux forms with with ajv (json-schema)",
   "scripts": {
+    "build": "babel src --out-dir dist",
     "test": "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "examples:simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
-    "examples:fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js",
-    "analyze": "webpack --json --config webpack.config.dist.js | webpack-bundle-size-analyzer && rm -rf dist"
+    "examples:fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js"
   },
-  "main": "./src/index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "MIT",
   "files": [
     "README.md",
-    "src"
+    "dist/index.js"
   ],
   "dependencies": {
     "ajv": "^5.2.2",
