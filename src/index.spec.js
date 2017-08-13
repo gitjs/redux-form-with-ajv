@@ -11,7 +11,7 @@ describe('redux-form-with-ajv', () => {
       "properties": {
         "name": {
           "type": "string"
-        },
+        }
       },
       "required": [ 'name' ]
     };
@@ -36,7 +36,7 @@ describe('redux-form-with-ajv', () => {
         },
         "name2": {
           "type": "string"
-        },
+        }
       },
       "required": [ 'name1', 'name2' ]
     };
@@ -46,7 +46,7 @@ describe('redux-form-with-ajv', () => {
 
       const expectedError = {
         name1: 'should have required property \'name1\'',
-        name2: 'should have required property \'name2\'',
+        name2: 'should have required property \'name2\''
       };
 
       expect(expectedError).to.deep.equal(errors);
