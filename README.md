@@ -21,5 +21,5 @@ export default reduxForm({
 ### Simple validation with few Field(s)
 ```npm run examples:simple```
 
-### Dynamic validation with FieldArrays and customized error messages
+### Dynamic validation with FieldArrays and custom error messages
 ```npm run examples:fieldArrays```
