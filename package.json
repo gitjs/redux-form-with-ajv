@@ -9,6 +9,7 @@
     "examples:simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
     "examples:fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js"
   },
+  "main": "index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "MIT",
   "files": [
