@@ -1,7 +1,7 @@
 {
   "name": "redux-form-with-ajv",
   "version": "0.0.1",
-  "description": "validate your redux forms with with ajv (json-schema)",
+  "description": "validate your redux forms with ajv (json-schema)",
   "scripts": {
     "build": "babel src --out-dir dist --ignore **/*.spec.js",
     "lint": "eslint src",
