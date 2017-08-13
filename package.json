@@ -11,7 +11,11 @@
   },
   "main": "./src/index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
-  "license": "ISC",
+  "license": "MIT",
+  "files": [
+    "README.md",
+    "src"
+  ],
   "dependencies": {
     "ajv": "^5.2.2",
     "ajv-errors": "^1.0.0",
