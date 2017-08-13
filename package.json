@@ -1,6 +1,6 @@
 {
   "name": "redux-form-joi-validation",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "validate your redux forms with with joi schema",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
