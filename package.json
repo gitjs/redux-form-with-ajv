@@ -17,6 +17,11 @@
     "README.md",
     "dist/index.js"
   ],
+  "keywords": [
+    "validation",
+    "redux-form",
+    "ajv"
+  ],
   "dependencies": {
     "ajv": "^5.2.2",
     "ajv-errors": "^1.0.0",
