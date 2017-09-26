@@ -13,7 +13,7 @@ export default (schema, values) => {
   return (values) => {
     let errors = {};
     const validate = ajv.compile(schema);
-    const valid = validate(values);
+    const valid = validate(values.toJS ? values.toJS() : values);
 
     if (!valid) {
       validate.errors.forEach((_error) => {
