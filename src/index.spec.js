@@ -103,7 +103,7 @@ describe('redux-form-with-ajv', () => {
     it ('should validate correctly', () => {
       const values = {
         toJS: () => ({
-          name1: 'some value',
+          name1: 'some value'
         })
       };
       const errors = validate(schema)(values);
