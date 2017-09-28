@@ -86,7 +86,7 @@ describe('redux-form-with-ajv', () => {
     });
   });
 
-  describe ('when values are immtable map', () => {
+  describe ('when values are immutable map', () => {
     const schema = {
       "type": "object",
       "properties": {
@@ -100,7 +100,7 @@ describe('redux-form-with-ajv', () => {
       "required": [ 'name1', 'name2' ]
     };
 
-    it ('should validate correcly', () => {
+    it ('should validate correctly', () => {
       const values = {
         toJS: () => ({
           name1: 'some value',
