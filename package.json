@@ -29,6 +29,7 @@
   "dependencies": {
     "ajv": "^5.2.2",
     "ajv-errors": "^1.0.0",
+    "object-assign": "^4.1.1",
     "object-path": "^0.11.4"
   },
   "devDependencies": {
