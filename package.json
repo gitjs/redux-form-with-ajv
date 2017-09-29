@@ -18,8 +18,8 @@
     "index.js"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/gitjs/redux-form-with-ajv"
+    "type": "git",
+    "url": "https://github.com/gitjs/redux-form-with-ajv"
   },
   "keywords": [
     "validation",
