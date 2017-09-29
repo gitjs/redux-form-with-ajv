@@ -20,8 +20,8 @@ export default (schema, values) => {
         const error = _error.params.errors ? _error.params.errors[0] : _error;
 
         const rootPath = error.dataPath;
-        const property = error.params.missingProperty ? '/' + error.params.missingProperty : '';
-        let fullPath = (rootPath + property).replace(/\//g, '.').substring(1);
+        const property = error.params.missingProperty ? `/${error.params.missingProperty}` : '';
+        let fullPath = `${rootPath}${property}`.replace(/\//g, '.').substring(1);
 
         if (error.parentSchema && error.parentSchema.type === 'array') {
           fullPath += '._error';
