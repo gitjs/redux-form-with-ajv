@@ -24,7 +24,8 @@
   "keywords": [
     "validation",
     "redux-form",
-    "ajv"
+    "ajv",
+    "json-schema"
   ],
   "dependencies": {
     "ajv": "^5.2.2",
