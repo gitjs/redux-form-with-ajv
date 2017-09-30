@@ -11,7 +11,7 @@ const ajv = new AjvErrors(new Ajv({
 
 export default (schema, values) => {
   return (values) => {
-    let errors = {};
+    const errors = {};
     const validate = ajv.compile(schema);
     const valid = validate(values.toJS ? values.toJS() : values);
 
@@ -19,15 +19,15 @@ export default (schema, values) => {
       validate.errors.forEach((_error) => {
         const error = _error.params.errors ? _error.params.errors[0] : _error;
 
-        let rootPath = error.dataPath;
-        let property = error.params.missingProperty ? '/' + error.params.missingProperty : '';
-        let fullPath = (rootPath + property).replace(/\//g, '.').substring(1);
+        const rootPath = error.dataPath;
+        const property = error.params.missingProperty ? `/${error.params.missingProperty}` : '';
+        let fullPath = `${rootPath}${property}`.replace(/\//g, '.').substring(1);
 
         if (error.parentSchema && error.parentSchema.type === 'array') {
           fullPath += '._error';
         }
 
-        let message = _error.message;
+        const message = _error.message;
 
         objectPath.set(errors, fullPath, message);
       });
