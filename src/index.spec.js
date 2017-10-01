@@ -112,4 +112,34 @@ describe('redux-form-with-ajv', () => {
       expect(expectedError).to.deep.equal(errors);
     });
   });
+
+  describe ('when values are immutable map', () => {
+    const schema = {
+      "type": "object",
+      "properties": {
+        "name1": {
+          "type": "string"
+        },
+        "name2": {
+          "type": "string"
+        }
+      },
+      "required": [ 'name1', 'name2' ]
+    };
+
+    it ('should validate correctly', () => {
+      const values = {
+        toJS: () => ({
+          name1: 'some value'
+        })
+      };
+      const errors = validate(schema)(values);
+
+      const expectedError = {
+        name2: 'should have required property \'name2\''
+      };
+
+      expect(expectedError).to.deep.equal(errors);
+    });
+  });
 });
