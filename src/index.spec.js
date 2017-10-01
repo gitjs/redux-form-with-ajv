@@ -1,9 +1,36 @@
 import validate from './index';
 import chai from 'chai';
+import spies from 'chai-spies';
+
+chai.use(spies);
 
 const expect = chai.expect;
 
 describe('redux-form-with-ajv', () => {
+
+  it('should allow to pass custom ajv instance', () => {
+    const schema = {
+      "type": "object",
+      "properties": {
+        "name1": {
+          "type": "string"
+        }
+      }
+    };
+    const values = {
+      name1: "some name"
+    };
+
+    const validateSpy = chai.spy(() => (true));
+    const ajvSpy = {
+      compile: chai.spy(() => (validateSpy))
+    };
+
+    validate(schema, { ajv: ajvSpy })(values);
+
+    expect(ajvSpy.compile).to.have.been.called.with(schema);
+    expect(validateSpy).to.have.been.called.with(values);
+  });
 
   describe ('when schema is valid', () => {
     const schema = {

@@ -1,18 +1,25 @@
 import Ajv from 'ajv';
 import AjvErrors from 'ajv-errors';
 import objectPath from 'object-path';
+import objectAssign from 'object-assign';
 
-const ajv = new AjvErrors(new Ajv({
+const ajvOptions = {
   allErrors: true,
   verbose: true,              // to have information about the error.parentSchema
   useDefaults: true,          // e.g.to may have default empty array
   jsonPointers: true          // -> /members/0
-}), {keepErrors: false});
+};
 
-export default (schema, values) => {
+const ajvErrorsOptions = {keepErrors: false};
+
+const ajv = new AjvErrors(new Ajv(ajvOptions), ajvErrorsOptions);
+
+export default (schema, options = {}) => {
+  options = objectAssign({ ajv }, options);
+
   return (values) => {
     const errors = {};
-    const validate = ajv.compile(schema);
+    const validate = options.ajv.compile(schema);
     const valid = validate(values.toJS ? values.toJS() : values);
 
     if (!valid) {

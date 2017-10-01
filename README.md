@@ -19,6 +19,18 @@ export default reduxForm({
 })(YourForm)
 ```
 
+```javascript
+import Ajv from 'ajv'
+import validate from 'redux-form-with-ajv'
+
+const ajv = new Ajv({ allErrors: true, verbose: true });
+
+export default reduxForm({
+  form: 'yourForm',
+  validate: validate(yourJsonSchema, { ajv })
+})(YourForm)
+```
+
 ## Run examples
 
 ### Simple validation with few Field(s)
