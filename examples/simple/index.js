@@ -24,7 +24,7 @@ const showResults = values =>
 
 let render = () => {
   const Form = require('./Form').default;
-  const raw = require('!!raw!./Form');
+  const raw = require('!!raw-loader!./Form');
   ReactDOM.render(
     <Provider store={store}>
       <div style={{ margin: '0 200px' }}>
@@ -62,7 +62,7 @@ if (module.hot) {
     setTimeout(render)
   };
   module.hot.accept('./Form', rerender);
-  module.hot.accept('!!raw!./Form', rerender);
+  module.hot.accept('!!raw-loader!./Form', rerender);
 }
 
 render();

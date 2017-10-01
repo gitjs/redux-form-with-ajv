@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
-const currentPath = __dirname.toLowerCase();
+const currentPath = __dirname;
 const distPath = path.join(currentPath, 'dist');
 const srcPath = path.join(currentPath);
 const entry = path.join(currentPath, 'index.js');
@@ -35,16 +35,18 @@ module.exports = {
     alias: {
       'redux-form-with-ajv': modulePath
     },
-    modulesDirectories: [
+    modules: [
       'node_modules'
     ],
-    extensions: ['', '.json', '.js']
+    extensions: ['.json', '.js']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?/,
-        loaders: ['babel', 'eslint'],
+        use: [
+          { loader: "babel-loader" }
+        ],
         include: [
           srcPath,
           modulePath
@@ -52,11 +54,16 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        use: [
+          { loader: "json-loader" },
+        ]
       },
       {
         test: /\.md/,
-        loaders: ["html-loader", "markdown-loader"]
+        use: [
+          { loader: "html-loader" },
+          { loader: "markdown-loader" },
+        ]
       }
     ]
   }
