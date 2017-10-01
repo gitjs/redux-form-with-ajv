@@ -8,7 +8,7 @@ This package transforms the generated [ajv](https://github.com/epoberezkin/ajv) 
 ## Installation
 ```npm install --save redux-form-with-ajv```
 
-## Usage (For more detailed view look at examples)
+## Usage
 
 ```javascript
 import validate from 'redux-form-with-ajv'
@@ -19,11 +19,18 @@ export default reduxForm({
 })(YourForm)
 ```
 
+## Advanced usage with custom ajv instance 
+
 ```javascript
 import Ajv from 'ajv'
 import validate from 'redux-form-with-ajv'
 
-const ajv = new Ajv({ allErrors: true, verbose: true });
+// Be sure to set the mandatory options!  
+const ajv = new Ajv({
+  allErrors: true,
+  verbose: true,
+  jsonPointers: true  
+});
 
 export default reduxForm({
   form: 'yourForm',
