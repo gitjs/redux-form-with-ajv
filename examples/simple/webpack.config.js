@@ -11,12 +11,7 @@ const modulePath = path.join(currentPath, '../../', 'src');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
-    'babel-polyfill',
-    'eventsource-polyfill',
-    'webpack-hot-middleware/client',
-    entry,
-  ],
+  entry: ['babel-polyfill', 'eventsource-polyfill', 'webpack-hot-middleware/client', entry],
   output: {
     path: distPath,
     filename: 'bundle.js'
@@ -28,42 +23,31 @@ module.exports = {
       assets: [
         '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css',
         'https://redux-form.com/6.5.0/bundle.css'
-      ], append: true
+      ],
+      append: true
     })
   ],
   resolve: {
     alias: {
       'redux-form-with-ajv': modulePath
     },
-    modules: [
-      'node_modules'
-    ],
+    modules: ['node_modules'],
     extensions: ['.json', '.js']
   },
   module: {
     rules: [
       {
         test: /\.jsx?/,
-        use: [
-          { loader: "babel-loader" }
-        ],
-        include: [
-          srcPath,
-          modulePath
-        ]
+        use: [{ loader: 'babel-loader' }],
+        include: [srcPath, modulePath]
       },
       {
         test: /\.json$/,
-        use: [
-          { loader: "json-loader" },
-        ]
+        use: [{ loader: 'json-loader' }]
       },
       {
         test: /\.md/,
-        use: [
-          { loader: "html-loader" },
-          { loader: "markdown-loader" },
-        ]
+        use: [{ loader: 'html-loader' }, { loader: 'markdown-loader' }]
       }
     ]
   }

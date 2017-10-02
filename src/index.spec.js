@@ -7,23 +7,22 @@ chai.use(spies);
 const expect = chai.expect;
 
 describe('redux-form-with-ajv', () => {
-
   it('should allow to pass custom ajv instance', () => {
     const schema = {
-      "type": "object",
-      "properties": {
-        "name1": {
-          "type": "string"
+      type: 'object',
+      properties: {
+        name1: {
+          type: 'string'
         }
       }
     };
     const values = {
-      name1: "some name"
+      name1: 'some name'
     };
 
-    const validateSpy = chai.spy(() => (true));
+    const validateSpy = chai.spy(() => true);
     const ajvSpy = {
-      compile: chai.spy(() => (validateSpy))
+      compile: chai.spy(() => validateSpy)
     };
 
     validate(schema, { ajv: ajvSpy })(values);
@@ -32,18 +31,18 @@ describe('redux-form-with-ajv', () => {
     expect(validateSpy).to.have.been.called.with(values);
   });
 
-  describe ('when schema is valid', () => {
+  describe('when schema is valid', () => {
     const schema = {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string'
         }
       },
-      "required": [ 'name' ]
+      required: ['name']
     };
 
-    it ('should return empty object', () => {
+    it('should return empty object', () => {
       const errors = validate(schema)({
         name: 'Yepp, i am a name.'
       });
@@ -54,26 +53,26 @@ describe('redux-form-with-ajv', () => {
     });
   });
 
-  describe ('when dataPath is empty', () => {
+  describe('when dataPath is empty', () => {
     const schema = {
-      "type": "object",
-      "properties": {
-        "name1": {
-          "type": "string"
+      type: 'object',
+      properties: {
+        name1: {
+          type: 'string'
         },
-        "name2": {
-          "type": "string"
+        name2: {
+          type: 'string'
         }
       },
-      "required": [ 'name1', 'name2' ]
+      required: ['name1', 'name2']
     };
 
-    it ('should apply the missing property', () => {
+    it('should apply the missing property', () => {
       const errors = validate(schema)({});
 
       const expectedError = {
-        name1: 'should have required property \'name1\'',
-        name2: 'should have required property \'name2\''
+        name1: "should have required property 'name1'",
+        name2: "should have required property 'name2'"
       };
 
       expect(expectedError).to.deep.equal(errors);
@@ -82,23 +81,23 @@ describe('redux-form-with-ajv', () => {
 
   describe('when property is an array', () => {
     const schema = {
-      "type": "object",
-      "properties": {
-        "someProperty": {
-          "type": "array",
-          "default": [],
-          "items": {
-            "type": "string"
+      type: 'object',
+      properties: {
+        someProperty: {
+          type: 'array',
+          default: [],
+          items: {
+            type: 'string'
           },
-          "minItems": 1,
-          "errorMessage": {
-            "minItems": "_error should be applied."
+          minItems: 1,
+          errorMessage: {
+            minItems: '_error should be applied.'
           }
         }
       }
     };
 
-    it ('should add an _error key', () => {
+    it('should add an _error key', () => {
       const errors = validate(schema)({
         someProperty: []
       });
@@ -113,21 +112,21 @@ describe('redux-form-with-ajv', () => {
     });
   });
 
-  describe ('when values are immutable map', () => {
+  describe('when values are immutable map', () => {
     const schema = {
-      "type": "object",
-      "properties": {
-        "name1": {
-          "type": "string"
+      type: 'object',
+      properties: {
+        name1: {
+          type: 'string'
         },
-        "name2": {
-          "type": "string"
+        name2: {
+          type: 'string'
         }
       },
-      "required": [ 'name1', 'name2' ]
+      required: ['name1', 'name2']
     };
 
-    it ('should validate correctly', () => {
+    it('should validate correctly', () => {
       const values = {
         toJS: () => ({
           name1: 'some value'
@@ -136,7 +135,7 @@ describe('redux-form-with-ajv', () => {
       const errors = validate(schema)(values);
 
       const expectedError = {
-        name2: 'should have required property \'name2\''
+        name2: "should have required property 'name2'"
       };
 
       expect(expectedError).to.deep.equal(errors);

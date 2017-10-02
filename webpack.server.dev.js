@@ -6,10 +6,12 @@ const config = require(process.argv[2]);
 const app = express();
 const compiler = webpack(config);
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
+app.use(
+  require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+  })
+);
 
 app.use(require('webpack-hot-middleware')(compiler));
 

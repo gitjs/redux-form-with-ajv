@@ -5,25 +5,24 @@ import objectAssign from 'object-assign';
 
 const ajvOptions = {
   allErrors: true,
-  verbose: true,              // to have information about the error.parentSchema
-  useDefaults: true,          // e.g.to may have default empty array
-  jsonPointers: true          // -> /members/0
+  verbose: true, // to have information about the error.parentSchema
+  useDefaults: true, // e.g.to may have default empty array
+  jsonPointers: true // -> /members/0
 };
 
-const ajvErrorsOptions = {keepErrors: false};
-
-const ajv = new AjvErrors(new Ajv(ajvOptions), ajvErrorsOptions);
+const ajvErrorsOptions = { keepErrors: false };
+const ajvWithErrors = new AjvErrors(new Ajv(ajvOptions), ajvErrorsOptions);
 
 export default (schema, options = {}) => {
-  options = objectAssign({ ajv }, options);
+  options = objectAssign({ ajv: ajvWithErrors }, options);
 
-  return (values) => {
+  return values => {
     const errors = {};
     const validate = options.ajv.compile(schema);
     const valid = validate(values.toJS ? values.toJS() : values);
 
     if (!valid) {
-      validate.errors.forEach((_error) => {
+      validate.errors.forEach(_error => {
         const error = _error.params.errors ? _error.params.errors[0] : _error;
 
         const rootPath = error.dataPath;
@@ -40,5 +39,5 @@ export default (schema, options = {}) => {
       });
     }
     return errors;
-  }
-}
+  };
+};
