@@ -38,6 +38,27 @@ export default reduxForm({
 })(YourForm)
 ```
 
+## Customize error message via `errorMessage` option
+
+You can use `errorMessage` option to pass function that will receive `ajv` error object as argument and should return error message.
+
+```javascript
+import validate from 'redux-form-with-ajv'
+
+const errorMessage = (_error) => {
+  if (_error.keyword === 'required') {
+    return 'is required'
+  }
+
+  return _error.message
+}
+
+export default reduxForm({
+  form: 'yourForm',
+  validate: validate(yourJsonSchema, { errorMessage })
+})(YourForm)
+```
+
 ## Run examples
 
 ### Simple validation with few Field(s)

@@ -31,6 +31,38 @@ describe('redux-form-with-ajv', () => {
     expect(validateSpy).to.have.been.called.with(values);
   });
 
+  it('should allow to customize error messages via option function', () => {
+    const schema = {
+      type: 'object',
+      properties: {
+        name1: {
+          type: 'string'
+        },
+        name2: {
+          type: 'string'
+        }
+      },
+      required: ['name1', 'name2']
+    };
+
+    const errorMessage = (_error) => {
+      if (_error.keyword === 'required' && _error.params.missingProperty === 'name2') {
+        return 'is required'
+      }
+
+      return _error.message;
+    }
+
+    const errors = validate(schema, { errorMessage })({});
+
+    const expectedError = {
+      name1: "should have required property 'name1'",
+      name2: "is required"
+    };
+
+    expect(expectedError).to.deep.equal(errors);
+  });
+
   describe('when schema is valid', () => {
     const schema = {
       type: 'object',
