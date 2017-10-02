@@ -10,7 +10,7 @@ const entry = path.join(currentPath, 'index.js');
 const modulePath = path.join(currentPath, '../../', 'src');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'cheap-module-source-map',
   entry: ['babel-polyfill', 'eventsource-polyfill', 'webpack-hot-middleware/client', entry],
   output: {
     path: distPath,

@@ -11,9 +11,9 @@ const ajvOptions = {
 };
 
 const ajvErrorsOptions = { keepErrors: false };
-const ajvWithErrors = new AjvErrors(new Ajv(ajvOptions), ajvErrorsOptions);
 
-const errorMessage = (_error) => (_error.message);
+const ajvWithErrors = new AjvErrors(new Ajv(ajvOptions), ajvErrorsOptions);
+const errorMessage = error => error.message;
 
 export default (schema, options = {}) => {
   options = objectAssign({ ajv: ajvWithErrors, errorMessage }, options);
