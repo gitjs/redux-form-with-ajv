@@ -13,8 +13,10 @@ const ajvOptions = {
 const ajvErrorsOptions = { keepErrors: false };
 const ajvWithErrors = new AjvErrors(new Ajv(ajvOptions), ajvErrorsOptions);
 
+const errorMessage = (_error) => (_error.message);
+
 export default (schema, options = {}) => {
-  options = objectAssign({ ajv: ajvWithErrors }, options);
+  options = objectAssign({ ajv: ajvWithErrors, errorMessage }, options);
 
   return values => {
     const errors = {};
@@ -33,7 +35,7 @@ export default (schema, options = {}) => {
           fullPath += '._error';
         }
 
-        const message = _error.message;
+        const message = options.errorMessage(_error);
 
         objectPath.set(errors, fullPath, message);
       });
