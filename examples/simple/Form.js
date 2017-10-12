@@ -31,13 +31,15 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
   </div>
 );
 
+const parse = value => (value === undefined ? undefined : parseInt(value));
+
 const SimpleForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <Field name="username" type="text" component={renderField} label="Username" />
       <Field name="email" type="email" component={renderField} label="Email" />
-      <Field name="age" type="number" component={renderField} label="Age" />
+      <Field name="age" type="number" component={renderField} label="Age" parse={parse} />
       <div>
         <button type="submit" disabled={submitting}>
           Submit
