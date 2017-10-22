@@ -1,6 +1,6 @@
 import validate from './index';
 import chai from 'chai';
-import spies from 'chai-spies';
+import spies from 'chai-spies-next';
 
 chai.use(spies);
 
@@ -45,19 +45,19 @@ describe('redux-form-with-ajv', () => {
       required: ['name1', 'name2']
     };
 
-    const errorMessage = (_error) => {
+    const errorMessage = _error => {
       if (_error.keyword === 'required' && _error.params.missingProperty === 'name2') {
-        return 'is required'
+        return 'is required';
       }
 
       return _error.message;
-    }
+    };
 
     const errors = validate(schema, { errorMessage })({});
 
     const expectedError = {
       name1: "should have required property 'name1'",
-      name2: "is required"
+      name2: 'is required'
     };
 
     expect(expectedError).to.deep.equal(errors);
