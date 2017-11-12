@@ -3,11 +3,11 @@
 
 # redux-form-with-ajv
 
-This package combines redux-form with json-schema. As validation library it uses [ajv](https://github.com/epoberezkin/ajv). It works
-universal so you can use it in frontend with client-side or server-side rendering.
+This package combines redux-form with json-schema. It transforms the generated ajv errors to a way that redux-form can work with. As validation library it uses [ajv](https://github.com/epoberezkin/ajv). It works
+universal, so you can use it in frontend with client-side or server-side rendering.
 
 The basic usage also include [ajv-errors](https://github.com/epoberezkin/ajv-errors) so you can diretly customize your messages
-within a json-schema. The advanced usage give you more control about ajv itself, as well about customize your errors by a callback. 
+within a json-schema. The advanced usage give you more control about ajv itself, as well about customize your errors by a callback.
 
 ## Installation
 ```npm install --save redux-form-with-ajv```
