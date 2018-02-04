@@ -13,17 +13,25 @@
   "main": "index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "MIT",
-  "files": ["README.md", "index.js"],
+  "files": [
+    "README.md",
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/gitjs/redux-form-with-ajv"
   },
-  "keywords": ["validation", "redux-form", "ajv", "json-schema"],
+  "keywords": [
+    "validation",
+    "redux-form",
+    "ajv",
+    "json-schema"
+  ],
   "dependencies": {
     "ajv": "^6.0.0",
     "ajv-errors": "^1.0.0",
-    "object-assign": "^4.1.1",
-    "object-path": "^0.11.4"
+    "lodash.set": "^4.3.2",
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",

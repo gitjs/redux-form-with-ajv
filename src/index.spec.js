@@ -144,6 +144,30 @@ describe('redux-form-with-ajv', () => {
     });
   });
 
+  describe('when dataPath is an empty string', () => {
+    const schema = {
+      type: 'object',
+      properties: {
+        someProperty1: {
+          type: 'string'
+        },
+        someProperty2: {
+          type: 'string'
+        }
+      }
+    };
+
+    it('should apply the missing property', () => {
+      const errors = validate(schema)('not an object');
+
+      const expectedError = {
+        '': 'should be object'
+      };
+
+      expect(expectedError).to.deep.equal(errors);
+    });
+  });
+
   describe('when values are immutable map', () => {
     const schema = {
       type: 'object',
