@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 import AjvErrors from 'ajv-errors';
-import objectPath from 'object-path';
+import set from 'lodash.set'
 import objectAssign from 'object-assign';
 
 const ajvOptions = {
@@ -37,7 +37,7 @@ export default (schema, options = {}) => {
 
         const message = options.errorMessage(_error);
 
-        objectPath.set(errors, fullPath, message);
+        set(errors, fullPath, message);
       });
     }
     return errors;
