@@ -1,6 +1,6 @@
 {
   "name": "redux-form-with-ajv",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "validate your redux forms with ajv (json-schema)",
   "scripts": {
     "build": "babel src --out-dir ./ --ignore **/*.spec.js",
@@ -13,20 +13,12 @@
   "main": "index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "MIT",
-  "files": [
-    "README.md",
-    "index.js"
-  ],
+  "files": ["README.md", "index.js"],
   "repository": {
     "type": "git",
     "url": "https://github.com/gitjs/redux-form-with-ajv"
   },
-  "keywords": [
-    "validation",
-    "redux-form",
-    "ajv",
-    "json-schema"
-  ],
+  "keywords": ["validation", "redux-form", "ajv", "json-schema"],
   "dependencies": {
     "ajv": "^6.0.0",
     "ajv-errors": "^1.0.0",
