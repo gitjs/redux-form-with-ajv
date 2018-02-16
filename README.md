@@ -78,7 +78,7 @@ import validate from 'redux-form-with-ajv'
 
 export default reduxForm({
   form: 'yourForm',
-  validate: validate(yourJsonSchema, { localize = localize.sv })
+  validate: validate(yourJsonSchema, { localize: localize.sv })
 })(YourForm)
 ```
 
