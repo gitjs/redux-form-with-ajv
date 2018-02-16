@@ -1,12 +1,14 @@
 import validate from './index';
 import chai from 'chai';
 import spies from 'chai-spies-next';
+import localize from 'ajv-i18n';
 
 chai.use(spies);
 
 const expect = chai.expect;
 
 describe('redux-form-with-ajv', () => {
+
   it('should allow to pass custom ajv instance', () => {
     const schema = {
       type: 'object',
@@ -61,6 +63,42 @@ describe('redux-form-with-ajv', () => {
     };
 
     expect(expectedError).to.deep.equal(errors);
+  });
+
+  describe ('when localize option is set', () => {
+    const schema = {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string'
+        }
+      },
+      required: ['name']
+    };
+
+    it ('should translate error message for string to "borde vara string"', () => {
+      const errors = validate(schema, { localize: localize.sv })({
+        name: 123
+      });
+
+      const expectedError = {
+        name: 'borde vara string'
+      };
+
+      expect(expectedError).to.deep.equal(errors);
+    });
+
+    it ('should translate error message for string to "должно быть string"', () => {
+      const errors = validate(schema, { localize: localize.ru })({
+        name: 123
+      });
+
+      const expectedError = {
+        name: 'должно быть string'
+      };
+
+      expect(expectedError).to.deep.equal(errors);
+    });
   });
 
   describe('when schema is valid', () => {

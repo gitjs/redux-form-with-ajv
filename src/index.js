@@ -14,9 +14,10 @@ const ajvErrorsOptions = { keepErrors: false };
 
 const ajvWithErrors = new AjvErrors(new Ajv(ajvOptions), ajvErrorsOptions);
 const errorMessage = error => error.message;
+const localize = errors => errors;
 
 export default (schema, options = {}) => {
-  options = objectAssign({ ajv: ajvWithErrors, errorMessage }, options);
+  options = objectAssign({ ajv: ajvWithErrors, errorMessage, localize }, options);
 
   return values => {
     const errors = {};
@@ -24,6 +25,8 @@ export default (schema, options = {}) => {
     const valid = validate(values.toJS ? values.toJS() : values);
 
     if (!valid) {
+      options.localize(validate.errors);
+
       validate.errors.forEach(_error => {
         const error = _error.params.errors ? _error.params.errors[0] : _error;
 

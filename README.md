@@ -34,11 +34,11 @@ You can use `ajv` option when you need full control of ajv. It is only mandatory
 import Ajv from 'ajv'
 import validate from 'redux-form-with-ajv'
 
-// Be sure to set the mandatory options!  
+// Be sure to set the mandatory options!
 const ajv = new Ajv({
   allErrors: true,
   verbose: true,
-  jsonPointers: true  
+  jsonPointers: true
 });
 
 export default reduxForm({
@@ -65,6 +65,20 @@ const errorMessage = (error) => {
 export default reduxForm({
   form: 'yourForm',
   validate: validate(yourJsonSchema, { errorMessage })
+})(YourForm)
+```
+
+### Localize error message via `localize` option with ajv-i18n
+
+You can use `localize` option to pass the translations from ajv-i18n.
+
+```javascript
+import localize from 'ajv-i18n';
+import validate from 'redux-form-with-ajv'
+
+export default reduxForm({
+  form: 'yourForm',
+  validate: validate(yourJsonSchema, { localize = localize.sv })
 })(YourForm)
 ```
 
