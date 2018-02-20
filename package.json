@@ -7,8 +7,8 @@
     "lint": "eslint src",
     "test": "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "examples:simple": "node webpack.server.dev.js ./examples/simple/webpack.config.js",
-    "examples:fieldArrays": "node webpack.server.dev.js ./examples/fieldArrays/webpack.config.js"
+    "examples:simple": "node ./examples/webpack.server.js ./simple/webpack.config.js",
+    "examples:fieldArrays": "node ./examples/webpack.server.js ./fieldArrays/webpack.config.js"
   },
   "main": "index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
