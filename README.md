@@ -3,11 +3,9 @@
 
 # redux-form-with-ajv
 
-This package combines redux-form with json-schema. It transforms the generated ajv errors to a way that redux-form can work with. As validation library it uses [ajv](https://github.com/epoberezkin/ajv). It works
-universal, so you can use it in frontend with client-side or server-side rendering.
+This package combines redux-form with json-schema. It transforms the generated ajv errors to a way that redux-form can work with. As validation library it uses [ajv](https://github.com/epoberezkin/ajv). 
 
-The basic usage also include [ajv-errors](https://github.com/epoberezkin/ajv-errors) so you can diretly customize your messages
-within a json-schema. The advanced usage give you more control about ajv itself, as well about customize your errors by a callback.
+The advanced usage give you more control about ajv itself, so you can use the ajv plugins like ajv-errors, ajv-i18n, ajv-keywords and so on, as well you have full control about the error via a callback.
 
 ## Installation
 ```npm install --save redux-form-with-ajv```
@@ -28,7 +26,7 @@ export default reduxForm({
 ### Use your custom ajv instance via `ajv` option
 
 You can use `ajv` option when you need full control of ajv. It is only mandatory to pass three options,
-`allErrors`, `verbose` and `jsonPointers`.
+`allErrors`, `verbose`.
 
 ```javascript
 import Ajv from 'ajv'
@@ -37,13 +35,26 @@ import validate from 'redux-form-with-ajv'
 // Be sure to set the mandatory options!
 const ajv = new Ajv({
   allErrors: true,
-  verbose: true,
-  jsonPointers: true
+  verbose: true
 });
 
 export default reduxForm({
   form: 'yourForm',
   validate: validate(yourJsonSchema, { ajv })
+})(YourForm)
+```
+
+### Localize error message via `localize` option with ajv-i18n
+
+You can use `localize` option to pass the translations from ajv-i18n.
+
+```javascript
+import localize from 'ajv-i18n';
+import validate from 'redux-form-with-ajv'
+
+export default reduxForm({
+  form: 'yourForm',
+  validate: validate(yourJsonSchema, { localize: localize.sv })
 })(YourForm)
 ```
 
@@ -65,20 +76,6 @@ const errorMessage = (error) => {
 export default reduxForm({
   form: 'yourForm',
   validate: validate(yourJsonSchema, { errorMessage })
-})(YourForm)
-```
-
-### Localize error message via `localize` option with ajv-i18n
-
-You can use `localize` option to pass the translations from ajv-i18n.
-
-```javascript
-import localize from 'ajv-i18n';
-import validate from 'redux-form-with-ajv'
-
-export default reduxForm({
-  form: 'yourForm',
-  validate: validate(yourJsonSchema, { localize: localize.sv })
 })(YourForm)
 ```
 

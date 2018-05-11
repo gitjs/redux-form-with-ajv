@@ -1,6 +1,8 @@
 import React from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import validate from 'redux-form-with-ajv';
+import Ajv from 'ajv';
+import AjvErrors from 'ajv-errors';
 
 const schema = {
   definitions: {
@@ -14,7 +16,6 @@ const schema = {
         lastName: { type: 'string' },
         hobbies: {
           type: 'array',
-          default: [],
           items: {
             $ref: '#/definitions/hobby'
           },
@@ -37,7 +38,6 @@ const schema = {
     },
     members: {
       type: 'array',
-      default: [],
       items: {
         $ref: '#/definitions/member'
       },
@@ -120,7 +120,12 @@ const FieldArraysForm = props => {
   );
 };
 
+const ajv = AjvErrors(Ajv({
+    allErrors: true,
+    verbose: true
+}));
+
 export default reduxForm({
   form: 'fieldArrays',
-  validate: validate(schema)
+  validate: validate(schema, { ajv })
 })(FieldArraysForm);
