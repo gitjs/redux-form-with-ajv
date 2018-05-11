@@ -120,10 +120,12 @@ const FieldArraysForm = props => {
   );
 };
 
-const ajv = AjvErrors(Ajv({
+const ajv = AjvErrors(
+  Ajv({
     allErrors: true,
     verbose: true
-}));
+  })
+);
 
 export default reduxForm({
   form: 'fieldArrays',
