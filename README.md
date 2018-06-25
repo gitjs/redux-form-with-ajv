@@ -80,12 +80,8 @@ export default reduxForm({
 })(YourForm);
 ```
 
-## Code Samples
+## View Sandbox Samples
 
-### Simple validation with few Field(s)
+[Simple validation with few Field(s)](https://codesandbox.io/s/9lwoy9v39p)
 
-Sandbox 1
-
-### Dynamic validation with FieldArrays and custom error messages
-
-Sandbox 2
+[Dynamic validation with FieldArrays and custom error messages]()
