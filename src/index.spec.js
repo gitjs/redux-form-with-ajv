@@ -11,6 +11,37 @@ chai.use(spies);
 const expect = chai.expect;
 
 describe('redux-form-with-ajv', () => {
+  describe('issue #8', () => {
+    const ajv = new Ajv({
+      format: 'full',
+      allErrors: true,
+      verbose: true,
+      schemaId: 'auto'
+    });
+
+    ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'));
+
+    const schema = {
+      title: 'User by user',
+      description: 'User created by user',
+      type: 'object',
+      additionalProperties: false,
+      required: ['email'],
+      properties: {
+        email: {
+          type: 'string',
+          allOf: [{ lowercase: true, trim: true }, { format: 'email' }]
+        }
+      }
+    };
+
+    const errors = validate(schema, { ajv })({
+      email: 'something@something'
+    });
+
+    console.log(errors);
+  });
+
   describe('ajv extensions', () => {
     describe('support ajv-errors', () => {
       it('should apply custom error message', () => {
