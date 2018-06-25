@@ -5,34 +5,38 @@
   "scripts": {
     "build": "babel src --out-dir ./ --ignore **/*.spec.js",
     "lint": "eslint src",
-    "test": "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
+    "test":
+      "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "examples:simple": "node ./examples/webpack.server.js ./simple/webpack.config.js",
-    "examples:fieldArrays": "node ./examples/webpack.server.js ./fieldArrays/webpack.config.js"
+    "examples:simple":
+      "node ./examples/webpack.server.js ./simple/webpack.config.js",
+    "examples:fieldArrays":
+      "node ./examples/webpack.server.js ./fieldArrays/webpack.config.js"
   },
   "main": "index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "MIT",
-  "files": [
-    "README.md",
-    "index.js"
-  ],
+  "files": ["README.md", "index.js"],
   "repository": {
     "type": "git",
     "url": "https://github.com/gitjs/redux-form-with-ajv"
   },
-  "keywords": [
-    "validation",
-    "redux-form",
-    "ajv",
-    "json-schema"
-  ],
+  "keywords": ["validation", "redux-form", "ajv", "json-schema"],
   "peerDependencies": {
     "ajv": "^6.5.0"
   },
   "dependencies": {
+    "ajv-errors": "1.0.0",
     "lodash.set": "^4.3.2",
-    "object-assign": "^4.1.1"
+    "object-assign": "^4.1.1",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-redux": "5.0.7",
+    "redbox-react": "1.6.0",
+    "redux": "4.0.0",
+    "redux-form": "7.4.2",
+    "redux-form-website-template": "0.0.123",
+    "redux-form-with-ajv": "1.0.0"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
