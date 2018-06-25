@@ -5,8 +5,13 @@
   "scripts": {
     "build": "babel src --out-dir ./ --ignore **/*.spec.js",
     "lint": "eslint src",
-    "test": "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test":
+      "nyc --reporter=html --reporter=text mocha ./src/index.spec.js --compilers js:babel-core/register",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "examples:simple":
+      "node ./examples/webpack.server.js ./simple/webpack.config.js",
+    "examples:fieldArrays":
+      "node ./examples/webpack.server.js ./fieldArrays/webpack.config.js"
   },
   "main": "index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
@@ -21,8 +26,17 @@
     "ajv": "^6.5.0"
   },
   "dependencies": {
+    "ajv-errors": "1.0.0",
     "lodash.set": "^4.3.2",
-    "object-assign": "^4.1.1"
+    "object-assign": "^4.1.1",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-redux": "5.0.7",
+    "redbox-react": "1.6.0",
+    "redux": "4.0.0",
+    "redux-form": "7.4.2",
+    "redux-form-website-template": "0.0.123",
+    "redux-form-with-ajv": "1.0.0"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
@@ -60,6 +74,10 @@
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
     "redux-form-website-template": "0.0.41",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.5.4",
+    "webpack": "^3.8.1",
+    "webpack-bundle-size-analyzer": "^2.6.0",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.20.0"
   }
 }

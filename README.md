@@ -80,12 +80,12 @@ export default reduxForm({
 })(YourForm);
 ```
 
-## Run examples
+## Code Samples
 
 ### Simple validation with few Field(s)
 
-`npm run examples:simple`
+Sandbox 1
 
 ### Dynamic validation with FieldArrays and custom error messages
 
-`npm run examples:fieldArrays`
+Sandbox 2
