@@ -36,7 +36,7 @@
     "redux": "4.0.0",
     "redux-form": "7.4.2",
     "redux-form-website-template": "0.0.123",
-    "redux-form-with-ajv": "1.0.0"
+    "redux-form-with-ajv": "1.1.0"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
