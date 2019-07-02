@@ -23,19 +23,21 @@ export default (schema, options = {}) => {
       options.localize(validate.errors);
 
       validate.errors.forEach(_error => {
-        const error = _error.params.errors ? _error.params.errors[0] : _error;
+        const errorElements = _error.params.errors ? _error.params.errors : [_error];
 
-        const rootPath = error.dataPath;
-        const property = error.params.missingProperty ? `/${error.params.missingProperty}` : '';
-        let fullPath = `${rootPath}${property}`.replace(/\//g, '.').substring(1);
+        errorElements.forEach(error =>  {
+          const rootPath = error.dataPath;
+          const property = error.params.missingProperty ? `/${error.params.missingProperty}` : '';
+          let fullPath = `${rootPath}${property}`.replace(/\//g, '.').substring(1);
 
-        if (error.parentSchema && error.parentSchema.type === 'array') {
-          fullPath += '._error';
-        }
+          if (error.parentSchema && error.parentSchema.type === 'array') {
+            fullPath += '._error';
+          }
 
-        const message = options.errorMessage(_error);
+          const message = options.errorMessage(_error);
 
-        set(errors, fullPath, message);
+          set(errors, fullPath, message);
+        });
       });
     }
     return errors;
