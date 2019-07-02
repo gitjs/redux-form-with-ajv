@@ -348,7 +348,7 @@ describe('redux-form-with-ajv', () => {
 
         const expectedError = {
           someProperty: {
-            _error: 'should NOT have less than 1 items'
+            _error: 'should NOT have fewer than 1 items'
           }
         };
 

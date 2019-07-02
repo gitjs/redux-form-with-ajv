@@ -11,12 +11,20 @@
   "main": "index.js",
   "author": "Jan Salloth aka < yuki ^.^ >",
   "license": "MIT",
-  "files": ["README.md", "index.js"],
+  "files": [
+    "README.md",
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/gitjs/redux-form-with-ajv"
   },
-  "keywords": ["validation", "redux-form", "ajv", "json-schema"],
+  "keywords": [
+    "validation",
+    "redux-form",
+    "ajv",
+    "json-schema"
+  ],
   "peerDependencies": {
     "ajv": "^6.5.0"
   },
